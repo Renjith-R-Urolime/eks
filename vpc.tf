@@ -1,7 +1,6 @@
 provider "aws" {
     region		= "us-east-2"
-    profile	        = "MyAWS"
- }
+    }
 
 data "aws_availability_zones" "available" {}
 
