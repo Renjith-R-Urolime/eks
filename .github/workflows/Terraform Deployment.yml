@@ -37,8 +37,7 @@ jobs:
            terraform init -backend-config=${{ matrix.environment }}/backend.tfvars -upgrade=true -no-color -input=false
       - name: Terraform Plan
         id: plan
-        run: |
-          terraform plan -auto-approve
+        run: terraform plan -auto-approve
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         id: apply
