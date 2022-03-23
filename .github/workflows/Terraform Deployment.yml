@@ -30,6 +30,11 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_wrapper: false
+      - name: Terraform Init
+        id: init
+        run: |
+           rm -rf .terraform
+           terraform init -auto-approve
       
       - name: Terraform destroy
         if: github.ref == 'refs/heads/main'
