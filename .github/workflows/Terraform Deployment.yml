@@ -20,8 +20,7 @@ jobs:
          include:
            - environment: test
              runner: ubuntu-latest
-           - environment: prod
-             runner: ubuntu-18.04
+           
     env:
          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -35,11 +34,11 @@ jobs:
         id: init
         run: |
            rm -rf .terraform
-           terraform init -backend-config=${{ matrix.environment }}/backend.tfvars -upgrade=true -no-color -input=false
+           terraform init -auto-approve 
       - name: Terraform Plan
         id: plan
         run: |
-          terraform plan -input=false -var-file=${{ matrix.environment }}/terraform.tfvars -no-color
+          terraform plan -auto-approve
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
         id: apply
