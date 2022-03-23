@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [ main ]
 defaults:
-  run:
+  run:  |
     shell: bash
 jobs:
   terraform:
