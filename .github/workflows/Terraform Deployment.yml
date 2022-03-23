@@ -32,7 +32,7 @@ jobs:
           terraform_wrapper: false
       
       - name: Terraform destroy
-        if: github.ref == 'refs/heads/destroy'
+        if: github.ref == 'refs/heads/main'
         id: destroy
         run: terraform destroy -auto-approve 
   
