@@ -32,10 +32,17 @@ jobs:
           terraform_wrapper: false
       - name: Terraform Init
         id: init
-        run: |
+        run: 
            rm -rf .terraform
            terraform init -backend-config=${{ matrix.environment }}/backend.tfvars -upgrade=true -no-color -input=false
-      
+      - name: Terraform Plan  
+        id: plan
+        run: |
+          terraform plan -auto-approve
+      - name: Terraform Apply
+        if: github.ref == 'refs/heads/main'
+        id: apply
+        run: terraform apply -auto-approve
       - name: Terraform destroy
         if: github.ref == 'refs/heads/main'
         id: destroy
